@@ -35,3 +35,5 @@ jobs:
         apikey: ${{ secrets.THUNDRA_API_KEY }}
         project_id: ${{ secrets.THUNDRA_TESTCONTAINERS_JEST_PROJECTID }}
     - run: npm test -- ${THUNDRA_JEST_ARGUMENTS}
+      env:
+        THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.us/v1
