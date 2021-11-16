@@ -1,8 +1,6 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
-
 on:
   push:
     branches: [ master ]
@@ -29,12 +27,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - name: Thundra Foresight JS Action
-      uses: thundra-io/thundra-foresight-js-action@v1
-      id: thundra-foresight-run
-      with:
-        apikey: ${{ secrets.THUNDRA_API_KEY }}
-        project_id: ${{ secrets.THUNDRA_TESTCONTAINERS_JEST_PROJECTID }}
-    - run: npm test -- ${THUNDRA_JEST_ARGUMENTS}
-      env:
-        THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.us/v1
+    - run: npm test
